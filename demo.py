@@ -13,7 +13,7 @@ def quick_sort(list):
     >>> quick_sort([5,6,9,1,5,8,3,4,5,10,4])
     [1, 3, 4, 4, 5, 5, 5, 6, 8, 9, 10]
     """
-    if list == []: 
+    if list == []:
         return []
     else:
         pivot = list[0]

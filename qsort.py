@@ -56,8 +56,7 @@ def qsort1a(list):
              greater = qsort([l for l in list if l >= pivot])
              return lesser + [pivot] + greater
      return qsort(list[:])
-
-      
+  
 def partition(list, l, e, g):
      while list != []:
          head = list.pop(0)
