@@ -1,7 +1,7 @@
 # Source code from: https://github.com/ooooola/sortquery/blob/master/querysort.py
 # for learning purpose
 #
-#
+
 import os
 import os.path
 import operator
