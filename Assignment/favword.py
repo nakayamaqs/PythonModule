@@ -14,21 +14,19 @@ def getFavoriteWord(urls):
     dic_result = {}
 
     for line in responseText:
-    	words = str(line.replace(b"\r", b"").replace(b"\n", b"")).split() #convert byte to string, replace \r\n.
+        line = line.decode('utf-8')  # Decoding the binary data to text.
+        words = line.split()
     	# print(words)
-    	for i,f in enumerate(words):
-    		# f = f.replace("\r", "") #remove \r\n
-    		# f = f.replace("\n", "")
-    		f = f.replace("\"", "")
-    		# print(f)
-    		f = re.sub("[',;.?!())]", '', f) # replace char like ...
+        for i,f in enumerate(words):
+            f = f.replace("\"", "")
+            f = re.sub("[',;.?!())]", '', f)  #replace char like ...
     		# Check if word is lowercase
-    		if(f.islower()):
+            if(f.islower()):
     			# check if word is in dictionary yet or not
-    			if(f in dic_result):
-    				dic_result[f] = dic_result[f] + 1
-    			else:
-    				dic_result[f] = 1
+                if(f in dic_result):
+                    dic_result[f] = dic_result[f] + 1
+                else:
+                    dic_result[f] = 1
 
     # for w in sorted(set(dic_result)):
     #     print(w + ": " + str(dic_result[w]))
