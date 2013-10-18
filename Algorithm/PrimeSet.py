@@ -76,7 +76,7 @@ def dy_CheckPrimeSet(num_list):
 # print(isPrime(323))
 
 logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', level=logging.DEBUG)
-num_list, set_result = CheckSet([3,7,12,4,7,23,24,59])
+num_list, set_result = CheckSet([3,7,12,4,7,23])
 # 24,59
 logging.info("Num of prim subsets =" + str(num_list) + ", Prim set result =" + str(set_result))
 # pp = pprint.PrettyPrinter(depth=2)
