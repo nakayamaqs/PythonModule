@@ -34,14 +34,14 @@ def getMedian(list1, list2, left, right, n):
     print("Info: List1[{i}]={0}, list2[{j}]={1}, (left,right) = ({left},{right}) ".format(list1[i],list2[j], j=j, i=i, left=left, right=right))
 
     # when list1[i] is in between list2[j] and list2[j+1], or greater than list2[n-1]
-    if list1[i] > list2[j] and (j == n-1 or list1[i] <= list2[j+1]):
+    if list1[i] > list2[j] and (list1[i] <= list2[j+1]):  #  (j == n-1 or list1[i] <= list2[j+1])
          # ar1[i] is decided as median 2, now select the median 1 (element just before ar1[i] in merged array) to get the average of both
-        if (i == 0 or list2[j] > list1[i-1]):
+        if (list2[j] > list1[i-1]): # i == 0 or list2[j] > list1[i-1]
             return (list1[i] + list2[j])/2;
         else:
             return (list1[i] + list2[i-1])/2;
     # when list1[i] is greater than list2[j] and list2[j+1]
-    elif list1[i] > list2[j] and j != n-1 and list1[i] > list2[j+1]:
+    elif list1[i] > list2[j] and list1[i] > list2[j+1]: # and j != n-1 and list1[i] > list2[j+1]
         # print('i:'+ str(i) + "*    j:" + str(j))
         return getMedian(list1, list2, left, i-1, n)
 
@@ -68,4 +68,8 @@ print(runGetMedian(list1,list2, len(list1)))
 
 list1 = [1, 2]
 list2 = [4, 7]
+print(runGetMedian(list1,list2,len(list1)))
+
+list1 = [9, 19]
+list2 = [12,24]
 print(runGetMedian(list1,list2,len(list1)))
