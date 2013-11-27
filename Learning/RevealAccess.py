@@ -54,6 +54,5 @@ mc = MyClass_onlyGet()
 print(mc.x)
 mc.x = 200
 print(mc.x)
-
 print (mc.y)
 

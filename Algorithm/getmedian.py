@@ -1,7 +1,8 @@
 
 # From http://www.geeksforgeeks.org/median-of-two-sorted-arrays/
 
-# Question: There are 2 sorted arrays A and B of size n each. Write an algorithm to find the median of the array obtained after merging the above 2 arrays(i.e. array of length 2n). The complexity should be O(log(n))
+# Question: There are 2 sorted arrays A and B of size n each. Write an algorithm to find the median of the array obtained after merging the above 2 arrays(i.e. array of length 2n).
+#The complexity should be O(log(n))
 
 # Median: In probability theory and statistics, a median is described as the number separating the higher half of a sample, a population, or a probability distribution, from the lower half.
 # The median of a finite list of numbers can be found by arranging all the numbers from lowest value to highest value and picking the middle one.
@@ -86,7 +87,6 @@ def getMedian(list1, list2,n):
         else:
             return getMedian(list1[0: n - n//2], list2[n//2:], n-n//2)
 
-
 def median_of_sortedlist(list):
     length_of_list = len(list)
     if length_of_list % 2 == 0:
@@ -94,7 +94,34 @@ def median_of_sortedlist(list):
     else:
         return list[length_of_list//2]
 
+# below are the improved python sourcecode by myself
+def getMedian_New(list1, list2,n):
+    if n <= 0:
+        return -1
+    #combine the cases that n == 1 and n == 2
+    elif n <= 2:
+        return ( max(list1[0], list2[0]) + min(list1[-1], list2[-1]) ) / 2
 
+    m1 = median_of_sortedlist(list1)
+    m2 = median_of_sortedlist(list2)
+
+    if m1 == m2:
+        return m1
+    #  if m1 < m2 then median must exist in list1[m1....] and list2[....m2]
+    elif m1 < m2:
+        round_half_len = math.ceil(n/2) # get the size of half list
+        print('m1 < m2  round_half_len:'+ str(round_half_len))
+        return getMedian_New(list1[n//2:], list2[0:round_half_len], round_half_len)
+    #  if m1 > m2 then median must exist in list1[....m2] and list2[m1....]
+    else:
+        round_half_len = math.ceil(n/2)
+        print('m1 > m2  round_half_len:'+str(round_half_len))
+        return getMedian_New(list1[0:round_half_len], list2[n//2:], round_half_len)
+
+def median_of_sortedlist_New(list):
+    ceil_half_len = math.ceil((n-1)/2)   # get the ceil middle element's index
+    floor_half_len = math.floor((n-1)/2) # get the floor middle element 's index'
+    return (list[ceil_half_len] + list[floor_half_len]) / 2
 
 # run testing as below:
 list_demo = [5,6,7,8,9,10]
@@ -102,12 +129,21 @@ list_demo = [5,6,7,8,9,10]
 # print(median_of_sortedlist(list_demo))
 # print(median_of_sortedlist([5,6,7,8,9,10,11]))
 
+# compare the two get median funcs
 list1 = [1, 2, 3, 9, 24, 57]
 list2 = [4, 7, 9, 10, 13, 69]
-print(median_of_sortedlist(list1))
-print(median_of_sortedlist(list2))
+# print(median_of_sortedlist(list1))
+# print(median_of_sortedlist(list2))
 print(getMedian(list1,list2,len(list1)))
+print(getMedian_New(list1,list2,len(list1)))
+
 
 list1 = [1, 2, 3, 7, 19, 24, 57]
 list2 = [4, 7, 9, 10, 12, 13, 69]
 print(getMedian(list1,list2,len(list1)))
+print(getMedian_New(list1,list2,len(list1)))
+
+list1 = [1, 12, 15, 26, 38]
+list2 = [2, 13, 17, 30, 45]
+print(getMedian(list1,list2,len(list1)))
+print(getMedian_New(list1,list2,len(list1)))
