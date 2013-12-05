@@ -1,0 +1,54 @@
+# From Coursera: https://class.coursera.org/interactivepython-003/quiz/
+
+# Convert the following English description into code.
+
+# Initialize n to be 1000. Initialize numbers to be a list of numbers from 2 to n, but not including n.
+# With results starting as the empty list, repeat the following as long as numbers contains any numbers.
+# Add the first number in numbers to the end of results.
+# Remove every number in numbers that is evenly divisible by (has no remainder when divided by) the number that you had just added to results.
+# How long is results?
+
+# To test your code, when n is instead 100, the length of results is 25.
+
+def mysolution():
+    n = 1000
+    i = 2
+    numbers = []
+    results = []
+    while i < n:
+        numbers.append(i)
+        i += 1
+
+    # print(numbers)
+
+    l = len(numbers)
+    while l > 0:
+        head = numbers[0]
+        results.append(head)
+        numbers.pop(0)
+
+        l2 = len(numbers)
+        while l2 > 0:
+            if numbers[l2-1] % head == 0:
+                numbers.pop(l2-1)
+            l2 -= 1
+
+        l = len(numbers)
+    print('len:'+ str(len(results)))
+
+mysolution()
+
+
+# this is a simplified solution. Keep it in mind!
+def better_solution():
+    n = 1000
+    numbers = range(2, n)
+    results = []
+
+    while numbers != []:
+        results.append(numbers[0])
+        numbers = [n for n in numbers if n % numbers[0] != 0]
+
+    print('len:'+ str(len(results)))
+
+better_solution()

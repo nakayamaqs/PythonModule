@@ -18,7 +18,7 @@
 #      do binary search in left half  (i.e., arr[left ... i-1])
 # 5) If ar1[i] is smaller than both ar2[j] and ar2[j+1] then
 #      do binary search in right half (i.e., arr[i+1....right])
-# 6) If you reach at any corner of ar1[] then do binary search in ar2[]
+# 6) If you reach at any corner of ar1[] then do binary search in ar2[] - Swith the two arrays.
 
 # below are the improved python sourcecode by myself
 def getMedian(list1, list2, left, right, n):
